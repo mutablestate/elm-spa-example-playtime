@@ -29,6 +29,11 @@ View the full documentation at https://tailwindcss.com.
 module.exports = {
   // ...defaultConfig,
   theme: {
+    extend: {
+      margin: {
+        '01': '0.1rem'
+      }
+    },
     colors: {
       transparent: 'transparent',
       black: '#000',
@@ -151,6 +156,7 @@ module.exports = {
       default: theme('colors.gray.300', 'currentColor')
     })
   },
+
   variants: {
     appearance: ['responsive', 'hover', 'focus']
   },

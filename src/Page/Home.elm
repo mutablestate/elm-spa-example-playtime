@@ -93,51 +93,49 @@ view : Model -> { title : String, content : Html Msg }
 view model =
     { title = "Conduit"
     , content =
-        div [ class "home-page" ]
+        div []
             [ viewBanner
-            , div [ class "container page" ]
-                [ div [ class "row" ]
-                    [ div [ class "col-md-9" ] <|
-                        case model.feed of
-                            Loaded feed ->
-                                [ div [ class "feed-toggle" ] <|
-                                    List.concat
-                                        [ [ viewTabs
-                                                (Session.cred model.session)
-                                                model.feedTab
-                                          ]
-                                        , Feed.viewArticles model.timeZone feed
-                                            |> List.map (Html.map GotFeedMsg)
-                                        , [ Feed.viewPagination ClickedFeedPage model.feedPage feed ]
-                                        ]
-                                ]
-
-                            Loading ->
-                                []
-
-                            LoadingSlowly ->
-                                [ Loading.icon ]
-
-                            Failed ->
-                                [ Loading.error "feed" ]
-                    , div [ class "col-md-3" ] <|
-                        case model.tags of
-                            Loaded tags ->
-                                [ div [ class "sidebar" ] <|
-                                    [ p [] [ text "Popular Tags" ]
-                                    , viewTags tags
+            , div [ class "flex m-4" ]
+                [ div [ class "w-3/4" ] <|
+                    case model.feed of
+                        Loaded feed ->
+                            [ div [ class "feed-toggle" ] <|
+                                List.concat
+                                    [ [ viewTabs
+                                            (Session.cred model.session)
+                                            model.feedTab
+                                      ]
+                                    , Feed.viewArticles model.timeZone feed
+                                        |> List.map (Html.map GotFeedMsg)
+                                    , [ Feed.viewPagination ClickedFeedPage model.feedPage feed ]
                                     ]
+                            ]
+
+                        Loading ->
+                            []
+
+                        LoadingSlowly ->
+                            [ Loading.icon ]
+
+                        Failed ->
+                            [ Loading.error "feed" ]
+                , div [ class "w-1/4" ] <|
+                    case model.tags of
+                        Loaded tags ->
+                            [ div [ class "bg-gray-300 p-2 pt-1" ] <|
+                                [ p [ class "mb-1" ] [ text "Popular Tags" ]
+                                , viewTags tags
                                 ]
+                            ]
 
-                            Loading ->
-                                []
+                        Loading ->
+                            []
 
-                            LoadingSlowly ->
-                                [ Loading.icon ]
+                        LoadingSlowly ->
+                            [ Loading.icon ]
 
-                            Failed ->
-                                [ Loading.error "tags" ]
-                    ]
+                        Failed ->
+                            [ Loading.error "tags" ]
                 ]
             ]
     }
@@ -145,7 +143,7 @@ view model =
 
 viewBanner : Html msg
 viewBanner =
-    div [ class "bg-green-500 shadow-inner" ]
+    div [ class "bg-green-500 shadow-inner mb-8" ]
         [ div [ class "mx-auto pt-2 pb-4 text-center text-white" ]
             [ h1 [ class "text-5xl font-semibold tracking-tight h1-shadow" ] [ text "conduit" ]
             , p [] [ text "A place to share your knowledge." ]
@@ -209,13 +207,13 @@ tagFeed tag =
 
 viewTags : List Tag -> Html Msg
 viewTags tags =
-    div [ class "tag-list" ] (List.map viewTag tags)
+    div [] (List.map viewTag tags)
 
 
 viewTag : Tag -> Html Msg
 viewTag tagName =
     a
-        [ class "tag-pill tag-default"
+        [ class "btn-pill"
         , onClick (ClickedTag tagName)
 
         -- The RealWorld CSS requires an href to work properly.
