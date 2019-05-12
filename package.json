@@ -1,0 +1,25 @@
+{
+  "name": "elm-spa-example",
+  "version": "1.0.0",
+  "description": "Elm SPA Example (Parcel Tailwindcss)",
+  "main": "elm.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Richard Feldman and contributors / mutablestate",
+  "license": "MIT",
+  "dependencies": {
+    "parcel": "^1.12.3",
+    "tailwindcss": "^1.0.0-beta.8"
+  },
+  "devDependencies": {
+    "elm-hot": "^1.0.1",
+    "node-elm-compiler": "^5.0.3"
+  }
+}
