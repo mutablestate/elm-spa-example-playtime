@@ -80,16 +80,16 @@ view model =
             Page.view viewer Page.Other NotFound.view
 
         Settings settings ->
-            viewPage Page.Other GotSettingsMsg (Settings.view settings)
+            viewPage Page.Settings GotSettingsMsg (Settings.view settings)
 
         Home home ->
             viewPage Page.Home GotHomeMsg (Home.view home)
 
         Login login ->
-            viewPage Page.Other GotLoginMsg (Login.view login)
+            viewPage Page.Login GotLoginMsg (Login.view login)
 
         Register register ->
-            viewPage Page.Other GotRegisterMsg (Register.view register)
+            viewPage Page.Register GotRegisterMsg (Register.view register)
 
         Profile username profile ->
             viewPage (Page.Profile username) GotProfileMsg (Profile.view profile)

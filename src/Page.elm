@@ -118,15 +118,12 @@ navbarLink : Page -> Route -> List (Html msg) -> Html msg
 navbarLink page route linkContent =
     a
         [ Route.href route
-        , class "block mt-4 lg:inline-block lg:mt-0 text-gray-600 hover:text-gray-900 mr-4"
-        , classList [ ( "text-blue-600", isActive page route ) ]
+        , class "block mt-4 lg:inline-block lg:mt-0 text-gray-600 hover:text-gray-800 mr-4"
+        , classList
+            [ ( "text-gray-900", isActive page route )
+            ]
         ]
         linkContent
-
-
-
--- li [ classList [ ( "nav-item", True ), ( "active", isActive page route ) ] ]
---     [ a [ class "nav-link", Route.href route ] linkContent ]
 
 
 isActive : Page -> Route -> Bool
